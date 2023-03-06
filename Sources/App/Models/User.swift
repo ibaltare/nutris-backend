@@ -45,10 +45,10 @@ final class User: Model {
     @Field(key: "accept_terms")
     var accept_terms: Bool
     
-    @Timestamp(key: "created_at", on: .create, format: .iso8601)
+    @Timestamp(key: "created_at", on: .create, format: .default)
     var createdAt: Date?
     
-    @Timestamp(key: "updated_at", on: .update, format: .iso8601)
+    @Timestamp(key: "updated_at", on: .update, format: .default)
     var updatedAt: Date?
     
     // Inits
