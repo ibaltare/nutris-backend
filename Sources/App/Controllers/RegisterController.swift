@@ -9,11 +9,11 @@ struct RegisterController: RouteCollection {
     }
     
     // MARK: - Routes
-    func userRegister(req: Request) async throws -> Credentials {
+    func userRegister(req: Request) async throws -> JWTToken.Public {
         // Validate
         try User.Create.validate(content: req)
-        
-        try await req.db.transaction { transaction in
+        //transaction to save
+        let userId = try await req.db.transaction { transaction in
             // Decode user data
             var userCreate = try req.content.decode(User.Create.self)
             userCreate.password = try req.password.hash(userCreate.password)
@@ -49,14 +49,19 @@ struct RegisterController: RouteCollection {
             userCreate.allergies.forEach { allergy in
                  _ = UserAllergy(id_user: userId, id_allergy: allergy.id).create(on: transaction)
             }
-            print(user.photo_path)
+            
             if !userCreate.photo.isEmpty{
                 guard let data = Data(base64Encoded: userCreate.photo) else {throw Abort(.internalServerError)}
                 try await req.fileio.writeFile(ByteBuffer(bytes: data),at: Constants.profileImagePath + photo)
             }
+           return userId
         }
-        
-        return Credentials(refreshToken: "refresh", accessToken: "access")
+        // JWT Tokens
+        let tokens = JWTToken.generateTokens(userID: userId)
+        let accessSigned = try req.jwt.sign(tokens.access)
+        let refreshSigned = try req.jwt.sign(tokens.refresh)
+
+        return JWTToken.Public(accessToken: accessSigned, refreshToken: refreshSigned)
     }
     
 }
