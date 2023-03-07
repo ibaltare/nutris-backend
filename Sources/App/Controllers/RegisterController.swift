@@ -36,7 +36,7 @@ struct RegisterController: RouteCollection {
                 gender: userCreate.gender,
                 weight: userCreate.weight,
                 height: userCreate.height,
-                photo_path: Constants.host + Constants.profileImagePath + photo,
+                photo_path: Constants.profileImagePath + photo,
                 id_country: userCreate.countryId,
                 id_goal: userCreate.goalId,
                 id_activity: userCreate.activityId,
@@ -51,7 +51,7 @@ struct RegisterController: RouteCollection {
             //save photo in server
             if !userCreate.photo.isEmpty && !userCreate.ext.isEmpty{
                 guard let data = Data(base64Encoded: userCreate.photo) else {throw Abort(.internalServerError)}
-                try await req.fileio.writeFile(ByteBuffer(bytes: data),at: Constants.profileImagePath + photo)
+                try await req.fileio.writeFile(ByteBuffer(bytes: data),at:"Public" + Constants.profileImagePath + photo)
             }
            return userId
         }

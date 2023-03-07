@@ -8,6 +8,6 @@ struct CountryController: RouteCollection {
     }
     
     func allCountries(req: Request) async throws -> [Country] {
-        try await Country.query(on: req.db).all()
+        try await Country.query(on: req.db).sort(\.$country).all()
     }
 }
