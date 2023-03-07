@@ -1,7 +1,7 @@
 import Vapor
 import Fluent
 
-final class Goal: Model {
+final class Goal: Model, Content {
     // Schema
     static var schema = "goals"
     // Properties

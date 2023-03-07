@@ -1,7 +1,7 @@
 import Vapor
 import Fluent
 
-final class Country: Model {
+final class Country: Model, Content {
     // Schema
     static var schema = "countries"
     // Properties

@@ -1,7 +1,7 @@
 import Vapor
 import Fluent
 
-final class Activity: Model {
+final class Activity: Model, Content {
     // Schema
     static var schema = "physical_activity"
     // Properties
