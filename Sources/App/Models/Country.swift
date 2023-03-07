@@ -13,4 +13,7 @@ final class Country: Model {
     
     @Field(key: "country")
     var country: String
+    
+    // Inits
+    init() { }
 }

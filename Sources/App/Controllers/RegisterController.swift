@@ -5,7 +5,6 @@ struct RegisterController: RouteCollection {
     // MARK: - Override
     func boot(routes: RoutesBuilder) throws {
         routes.on(.POST, "register", body: .collect(maxSize: "10mb"), use: userRegister)
-        //routes.post("register", use: userRegister)
     }
     
     // MARK: - Routes
@@ -17,9 +16,9 @@ struct RegisterController: RouteCollection {
             // Decode user data
             var userCreate = try req.content.decode(User.Create.self)
             userCreate.password = try req.password.hash(userCreate.password)
-            
+            //create photo name if exist
             let photo:String
-            if !userCreate.photo.isEmpty {
+            if !userCreate.photo.isEmpty && !userCreate.ext.isEmpty {
                 photo = UUID().uuidString + ".\(userCreate.ext)"
             } else {
                 if userCreate.gender.lowercased() == "man" {
@@ -28,7 +27,7 @@ struct RegisterController: RouteCollection {
                     photo = Constants.imageDefaultWomen
                 }
             }
-            
+            //create user model to save
             let user = User(
                 fullname: userCreate.fullname,
                 email: userCreate.email,
@@ -44,13 +43,13 @@ struct RegisterController: RouteCollection {
                 accept_terms: userCreate.terms)
             
             try await user.create(on: transaction)
-            
+            //save user allergies
             guard let userId = user.id else {throw Abort(.internalServerError)}
             userCreate.allergies.forEach { allergy in
                  _ = UserAllergy(id_user: userId, id_allergy: allergy.id).create(on: transaction)
             }
-            
-            if !userCreate.photo.isEmpty{
+            //save photo in server
+            if !userCreate.photo.isEmpty && !userCreate.ext.isEmpty{
                 guard let data = Data(base64Encoded: userCreate.photo) else {throw Abort(.internalServerError)}
                 try await req.fileio.writeFile(ByteBuffer(bytes: data),at: Constants.profileImagePath + photo)
             }

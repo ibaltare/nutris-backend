@@ -10,4 +10,7 @@ final class Activity: Model {
     
     @Field(key: "activity")
     var activity: String
+    
+    // Inits
+    init() { }
 }

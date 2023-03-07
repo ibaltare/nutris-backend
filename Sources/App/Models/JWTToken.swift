@@ -20,7 +20,7 @@ struct JWTToken: Content, JWTPayload, Authenticatable {
         try exp.verifyNotExpired()
         
         // Validate subject
-        guard let _ = UUID(sub.value) else {
+        guard let _ = Int(sub.value) else {
             throw JWTError.claimVerificationFailure(name: "sub", reason: "Subject is invalid")
         }
         

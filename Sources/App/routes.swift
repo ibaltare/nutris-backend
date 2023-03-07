@@ -7,6 +7,7 @@ func routes(_ app: Application) throws {
         try builder.group(APIKeyMiddleware()) { builder in
             try builder.group("users"){ builder in
                 try builder.register(collection: RegisterController())
+                try builder.register(collection: AuthController())
             }
         }
     }

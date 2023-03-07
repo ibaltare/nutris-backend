@@ -10,4 +10,7 @@ final class Goal: Model {
     
     @Field(key: "goal")
     var goal: String
+    
+    // Inits
+    init() { }
 }
