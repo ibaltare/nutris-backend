@@ -122,9 +122,21 @@ extension User {
         static func validations(_ validations: inout Validations) {
             validations.add("email", as: String.self, is: .email, required: true)
             validations.add("password", as: String.self, is: !.empty, required: true)
-            
         }
-        
+    }
+    
+    struct Public: Content {
+        let id: Int
+        let fullname: String
+        let email: String
+        let age: Int
+        let gender: String
+        let weight: Float
+        let height: Int
+        let photo: String
+        let countryId: Int
+        let goalId: Int
+        let activityId: Int
     }
 }
 
