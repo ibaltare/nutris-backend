@@ -53,6 +53,10 @@ struct RegisterController: RouteCollection {
                 guard let data = Data(base64Encoded: userCreate.photo) else {throw Abort(.internalServerError)}
                 try await req.fileio.writeFile(ByteBuffer(bytes: data),at:"Public" + Constants.profileImagePath + photo)
             }
+            
+            //create diet (temp)
+            try await DietHelper.createDiet(userID: userId, goalID: userCreate.goalId, db: transaction)
+            
            return userId
         }
         // JWT Tokens

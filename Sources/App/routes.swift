@@ -13,6 +13,7 @@ func routes(_ app: Application) throws {
             try builder.group("cat"){ builder in
                 try builder.register(collection: CountryController())
             }
+            try builder.register(collection: RecipeController())
         }
     }
 }
