@@ -24,7 +24,7 @@ final class DietDetail: Model {
     // Inits
     init() { }
     
-    internal init(id: Int? = nil, diet: Diet, id_food: Int, recipe: Recipe, date_at: Date? = nil) throws {
+    init(id: Int? = nil, diet: Diet, id_food: Int, recipe: Recipe, date_at: Date? = nil) throws {
         self.id = id
         self.$diet.id = try diet.requireID()
         self.id_food = id_food

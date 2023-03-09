@@ -27,19 +27,25 @@ final class Diet: Model {
     @Field(key: "daily_calories")
     var daily_calories: Int
     
+    @Field(key: "current")
+    var current: Bool
+    
     @Timestamp(key: "created_at", on: .create, format: .default)
     var createdAt: Date?
     
     @Timestamp(key: "updated_at", on: .update, format: .default)
     var updatedAt: Date?
     
-    @Parent(key: "user_id")
+    @Parent(key: "id")
     var user: User
+    
+    @Siblings(through: DietDetail.self, from: \.$diet, to: \.$recipe)
+    var recipes: [Recipe]
     
     // Inits
     init() { }
     
-    init(id: Int? = nil, id_user: Int, id_goal: Int, daily_protein: Int, daily_fat: Int, daily_carbs: Int, daily_calories: Int, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    init(id: Int? = nil, id_user: Int, id_goal: Int, daily_protein: Int, daily_fat: Int, daily_carbs: Int, daily_calories: Int,current: Bool, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.id = id
         self.id_user = id_user
         self.id_goal = id_goal
@@ -47,6 +53,7 @@ final class Diet: Model {
         self.daily_fat = daily_fat
         self.daily_carbs = daily_carbs
         self.daily_calories = daily_calories
+        self.current =  current
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }

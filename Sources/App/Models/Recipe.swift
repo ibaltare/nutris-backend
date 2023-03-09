@@ -21,16 +21,19 @@ final class Recipe: Model {
     var photo_path: String
     
     @Field(key: "proteins")
-    var proteins: String
+    var proteins: Int
     
     @Field(key: "fats")
-    var fats: String
+    var fats: Int
     
     @Field(key: "carbs")
-    var carbs: String
+    var carbs: Int
     
     @Field(key: "calories")
-    var calories: String
+    var calories: Int
+    
+    @Field(key: "rating")
+    var rating: Int
     
     @Timestamp(key: "created_at", on: .create, format: .default)
     var createdAt: Date?
@@ -38,6 +41,21 @@ final class Recipe: Model {
     @Timestamp(key: "updated_at", on: .update, format: .default)
     var updatedAt: Date?
     
+    @Siblings(through: DietDetail.self, from: \.$recipe, to: \.$diet)
+    var diet: [Diet]
+    
     // Inits
     init() { }
+}
+
+extension Recipe {
+    struct List: Content {
+        let duration: Int
+        let id: Int
+        let title: String
+        let desc: String
+        let rating: Int
+        let food: String
+        let photo: String
+    }
 }

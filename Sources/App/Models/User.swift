@@ -51,6 +51,9 @@ final class User: Model {
     @Timestamp(key: "updated_at", on: .update, format: .default)
     var updatedAt: Date?
     
+    @Children(for: \.$user)
+    var diet: [Diet]
+    
     // Inits
     init() { }
     
