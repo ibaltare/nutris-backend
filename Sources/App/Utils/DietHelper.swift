@@ -10,7 +10,8 @@ struct DietHelper {
         
         try await Food.query(on: db).all().forEach{ food in
             Task {
-                let recipe = try await Recipe.find(Int.random(in: 1..<6), on: db)
+                let num = try await Recipe.query(on: db).count()
+                let recipe = try await Recipe.find(Int.random(in: 1..<(num+1)), on: db)
                 try await DietDetail(diet: diet, id_food: food.id!, recipe: recipe!).create(on: db)
             }
         }
