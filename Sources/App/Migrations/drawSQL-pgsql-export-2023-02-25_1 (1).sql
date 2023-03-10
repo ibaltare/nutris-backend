@@ -372,6 +372,10 @@ INSERT INTO recipes(name,description,preparation_time,photo_path,proteins,fats,c
 
 INSERT INTO recipes(name,description,preparation_time,photo_path,proteins,fats,carbs,calories,rating,created_at,updated_at) VALUES ('Lemon Chicken Orzo Soup','This lemon chicken orzo soup is inspired by Panera Breads version.',5,'/imageRecipes/soup.jpg',10,30,10,445,0,current_timestamp,current_timestamp);
 
+INSERT INTO recipes(name,description,preparation_time,photo_path,proteins,fats,carbs,calories,rating,created_at,updated_at) VALUES ('Peach and pancetta salad','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis interdum orci. ',5,'/imageRecipes/salad.jpeg',12,33,17,345,0,current_timestamp,current_timestamp);
+
+INSERT INTO recipes(name,description,preparation_time,photo_path,proteins,fats,carbs,calories,rating,created_at,updated_at) VALUES ('Salad with citrus sesame dressing','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis interdum orci, eu laoreet magna tempus nec. ',5,'/imageRecipes/summer-salad.jpeg',10,30,10,445,0,current_timestamp,current_timestamp);
+
 
 
 INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (1,'cooked salmon, flaked','3 ounces');
@@ -385,6 +389,12 @@ INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (3,'orzo pasta','3 o
 INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (3,'cooked white rice','1 cup');
 INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (3,'soy sauce','1 tablespoon');
 
+INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (4,'apple cider vinegar','1/4 cup');
+INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (4,'soy sauce','1 tablespoon');
+
+INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (5,'nori sesame topping','1/3 cup');
+INSERT INTO ingredients(id_recipe,ingredient,amount) VALUES (5,'soy sauce','1 tablespoon');
+
 
 INSERT INTO recipe_steps(id_recipe,step,description) VALUES (1,1,'Use a fork to flake salmon onto a microwave-safe plate. Top with rice and place 1 ice cube on top');
 INSERT INTO recipe_steps(id_recipe,step,description) VALUES (1,2,'Uncover and remove ice cube. Drizzle soy sauce, Sriracha and mayonnaise over the top and toss everything with a fork until well-combined.');
@@ -396,6 +406,14 @@ INSERT INTO recipe_steps(id_recipe,step,description) VALUES (2,2,'Garnish with t
 INSERT INTO recipe_steps(id_recipe,step,description) VALUES (3,1,'Use a fork to flake salmon onto a microwave-safe plate. Top with rice and place 1 ice cube on top');
 INSERT INTO recipe_steps(id_recipe,step,description) VALUES (3,2,'Uncover and remove ice cube. Drizzle soy sauce, Sriracha and mayonnaise over the top and toss everything with a fork until well-combined.');
 INSERT INTO recipe_steps(id_recipe,step,description) VALUES (3,3,'Garnish with torn pieces of nori, sliced avocado and kimchi.');
+
+INSERT INTO recipe_steps(id_recipe,step,description) VALUES (4,1,'Sed consequat orci nec leo ornare, non tincidunt quam mattis. In fermentum porta vehicula');
+INSERT INTO recipe_steps(id_recipe,step,description) VALUES (4,2,'Sed consequat orci nec leo ornare, non tincidunt quam mattis. In fermentum porta vehicula');
+INSERT INTO recipe_steps(id_recipe,step,description) VALUES (4,3,'Sed consequat orci nec leo ornare, non tincidunt quam mattis. In fermentum porta vehicula');
+
+INSERT INTO recipe_steps(id_recipe,step,description) VALUES (5,1,'Sed consequat orci nec leo ornare, non tincidunt quam mattis. In fermentum porta vehicula');
+INSERT INTO recipe_steps(id_recipe,step,description) VALUES (5,2,'Sed consequat orci nec leo ornare, non tincidunt quam mattis. In fermentum porta vehicula');
+INSERT INTO recipe_steps(id_recipe,step,description) VALUES (5,3,'Sed consequat orci nec leo ornare, non tincidunt quam mattis. In fermentum porta vehicula');
 
 	
 
