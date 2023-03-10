@@ -11,7 +11,7 @@ func routes(_ app: Application) throws {
                 try builder.register(collection: UserController())
             }
             try builder.group("cat"){ builder in
-                try builder.register(collection: CountryController())
+                try builder.register(collection: CatalogueController())
             }
             try builder.register(collection: RecipeController())
         }
