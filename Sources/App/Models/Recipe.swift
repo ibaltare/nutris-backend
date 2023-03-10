@@ -41,8 +41,14 @@ final class Recipe: Model {
     @Timestamp(key: "updated_at", on: .update, format: .default)
     var updatedAt: Date?
     
-    @Siblings(through: DietDetail.self, from: \.$recipe, to: \.$diet)
-    var diet: [Diet]
+    //@Siblings(through: DietDetail.self, from: \.$recipe, to: \.$diet)
+    //var diet: [Diet]
+    
+    @Children(for: \.$recipe)
+    var ingredients: [Ingredient]
+    
+    @Children(for: \.$recipe)
+    var steps: [RecipeStep]
     
     // Inits
     init() { }
@@ -57,5 +63,20 @@ extension Recipe {
         let rating: Int
         let food: String
         let photo: String
+    }
+    
+    struct Detail: Content {
+        let duration: Int
+        let id: Int
+        let title: String
+        let desc: String
+        let rating: Int
+        let photo: String
+        let proteins: Int
+        let fats: Int
+        let carbs: Int
+        let calories: Int
+        let steps: [RecipeStep]
+        let ingredients: [Ingredient]
     }
 }

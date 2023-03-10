@@ -39,8 +39,8 @@ final class Diet: Model {
     @Parent(key: "id")
     var user: User
     
-    @Siblings(through: DietDetail.self, from: \.$diet, to: \.$recipe)
-    var recipes: [Recipe]
+    //@Siblings(through: DietDetail.self, from: \.$diet, to: \.$recipe)
+    //var recipes: [Recipe]
     
     // Inits
     init() { }

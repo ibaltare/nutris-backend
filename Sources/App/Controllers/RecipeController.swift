@@ -6,7 +6,7 @@ struct RecipeController: RouteCollection {
     // MARK: - Override
     func boot(routes: RoutesBuilder) throws {
         routes.group(JWTToken.authenticator(), JWTToken.guardMiddleware(), TokenMiddleware()) { builder in
-            builder.get("dashboard", use: dashboard)
+            builder.get("diet", use: dashboard)
             builder.get("recipe",":id", use: recipeDetail)
         }
     }
@@ -42,8 +42,15 @@ struct RecipeController: RouteCollection {
         }
     }
     
-    func recipeDetail(req: Request) async throws -> String {
+    func recipeDetail(req: Request) async throws -> Recipe.Detail {
         let id = req.parameters.get("id", as: Int.self)
-        return "ok"
+        guard let recipe = try await Recipe.find(id, on: req.db) else {
+            throw Abort(.notFound)
+        }
+        try await recipe.$ingredients.load(on: req.db)
+        try await recipe.$steps.load(on: req.db)
+        
+        return Recipe.Detail(
+            duration: recipe.preparation_time, id: recipe.id!, title: recipe.name, desc: recipe.description, rating: recipe.rating, photo: recipe.photo_path, proteins: recipe.proteins, fats: recipe.fats, carbs: recipe.carbs, calories: recipe.calories, steps: recipe.steps, ingredients: recipe.ingredients)
     }
 }
