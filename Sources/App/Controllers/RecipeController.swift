@@ -5,7 +5,7 @@ struct RecipeController: RouteCollection {
     
     // MARK: - Override
     func boot(routes: RoutesBuilder) throws {
-        routes.group(JWTToken.authenticator(), JWTToken.guardMiddleware(), TokenMiddleware()) { builder in
+        routes.group(JWTToken.authenticator(), JWTToken.guardMiddleware(),TokenMiddleware()) { builder in
             builder.get("diet", use: dashboard)
             builder.get("recipe",":id", use: recipeDetail)
         }
