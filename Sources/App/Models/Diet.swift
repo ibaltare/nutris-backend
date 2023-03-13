@@ -36,7 +36,7 @@ final class Diet: Model {
     @Timestamp(key: "updated_at", on: .update, format: .default)
     var updatedAt: Date?
     
-    @Parent(key: "id")
+    @Parent(key: "id_user")
     var user: User
     
     //@Siblings(through: DietDetail.self, from: \.$diet, to: \.$recipe)
