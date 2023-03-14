@@ -21,7 +21,7 @@ struct RegisterController: RouteCollection {
             if !userCreate.photo.isEmpty && !userCreate.ext.isEmpty {
                 photo = UUID().uuidString + ".\(userCreate.ext)"
             } else {
-                if userCreate.gender.lowercased() == "man" {
+                if userCreate.gender.lowercased() == "male" {
                     photo = Constants.imageDefaultMan
                 }else{
                     photo = Constants.imageDefaultWomen
