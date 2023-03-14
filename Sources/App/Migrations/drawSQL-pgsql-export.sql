@@ -362,7 +362,7 @@ INSERT INTO allergies(allergy) VALUES ('Soy');
 
 INSERT INTO foods(food) VALUES ('Breakfast');
 INSERT INTO foods(food) VALUES ('A.M. Snack');
-INSERT INTO foods(food) VALUES ('Launch');
+INSERT INTO foods(food) VALUES ('Lunch');
 INSERT INTO foods(food) VALUES ('P.M. Snack');
 INSERT INTO foods(food) VALUES ('Dinner');
 /*------------------- data---------*/
